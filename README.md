@@ -6,6 +6,8 @@ First this mostly is still minio when it was apache 2.0 license. The plan is to 
 
 [ ] make sure software is stable
 
+[ ] new ui that is Apache 2.0
+
 
 # Databank Quickstart Guide
 
