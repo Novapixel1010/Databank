@@ -3,6 +3,7 @@
 First this mostly is still minio when it was apache 2.0 license. The plan is to rebrand it and keep the apache 2.0 license. 👇 To do list 👇
 
 [ ] add docs
+
 [ ] make sure software is stable
 
 
