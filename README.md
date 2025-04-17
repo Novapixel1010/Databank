@@ -1,12 +1,13 @@
-# MinIO Quickstart Guide
-[![Slack](https://slack.min.io/slack?type=svg)](https://slack.min.io) [![Docker Pulls](https://img.shields.io/docker/pulls/minio/minio.svg?maxAge=604800)](https://hub.docker.com/r/minio/minio/)
+# what is this ?
 
-[![MinIO](https://raw.githubusercontent.com/minio/minio/master/.github/logo.svg?sanitize=true)](https://min.io)
+First this mostly is still minio when it was apache 2.0 license. The plan is to rebrand it and keep the apache 2.0 license. 👇 To do list 👇
 
-MinIO is a High Performance Object Storage released under Apache License v2.0. It is API compatible with Amazon S3 cloud storage service. Use MinIO to build high performance infrastructure for machine learning, analytics and application data workloads.
+[ ] add docs
+[ ] make sure software is stable
 
-This README provides quickstart instructions on running MinIO on baremetal hardware, including Docker-based installations. For Kubernetes environments,
-use the [MinIO Kubernetes Operator](https://github.com/minio/operator/blob/master/README.md).
+
+# Databank Quickstart Guide
+
 
 # Docker Installation
 
@@ -37,58 +38,7 @@ see https://docs.min.io/docs/ and click **MINIO SDKS** in the navigation to view
 > NOTE: To deploy MinIO on Docker with persistent storage, you must map local persistent directories from the host OS to the container using the
   `docker -v` option. For example, `-v /mnt/data:/data` maps the host OS drive at `/mnt/data` to `/data` on the Docker container.
 
-## Edge
 
-Run the following command to run the bleeding-edge image of MinIO on a Docker container using an ephemeral data volume:
-
-```
-docker run -p 9000:9000 minio/minio:edge server /data
-```
-
-The MinIO deployment starts using default root credentials `minioadmin:minioadmin`. You can test the deployment using the MinIO Browser, an embedded
-web-based object browser built into MinIO Server. Point a web browser running on the host machine to http://127.0.0.1:9000 and log in with the
-root credentials. You can use the Browser to create buckets, upload objects, and browse the contents of the MinIO server.
-
-You can also connect using any S3-compatible tool, such as the MinIO Client `mc` commandline tool. See
-[Test using MinIO Client `mc`](#test-using-minio-client-mc) for more information on using the `mc` commandline tool. For application developers,
-see https://docs.min.io/docs/ and click **MINIO SDKS** in the navigation to view MinIO SDKs for supported languages.
-
-
-> NOTE: To deploy MinIO on Docker with persistent storage, you must map local persistent directories from the host OS to the container using the
-  `docker -v` option. For example, `-v /mnt/data:/data` maps the host OS drive at `/mnt/data` to `/data` on the Docker container.
-
-# macOS
-
-Use the following commands to run a standalone MinIO server on macOS.
-
-Standalone MinIO servers are best suited for early development and evaluation. Certain features such as versioning, object locking, and bucket replication
-require distributed deploying MinIO with Erasure Coding. For extended development and production, deploy MinIO with Erasure Coding enabled - specifically,
-with a *minimum* of 4 drives per MinIO server. See [MinIO Erasure Code Quickstart Guide](https://docs.min.io/docs/minio-erasure-code-quickstart-guide.html)
-for more complete documentation.
-
-## Homebrew (recommended)
-
-Run the following command to install the latest stable MinIO package using [Homebrew](https://brew.sh/). Replace ``/data`` with the path to the drive or directory in which you want MinIO to store data.
-
-```sh
-brew install minio/stable/minio
-minio server /data
-```
-
-> NOTE: If you previously installed minio using `brew install minio` then it is recommended that you reinstall minio from `minio/stable/minio` official repo instead.
-
-```sh
-brew uninstall minio
-brew install minio/stable/minio
-```
-
-The MinIO deployment starts using default root credentials `minioadmin:minioadmin`. You can test the deployment using the MinIO Browser, an embedded
-web-based object browser built into MinIO Server. Point a web browser running on the host machine to http://127.0.0.1:9000 and log in with the
-root credentials. You can use the Browser to create buckets, upload objects, and browse the contents of the MinIO server.
-
-You can also connect using any S3-compatible tool, such as the MinIO Client `mc` commandline tool. See
-[Test using MinIO Client `mc`](#test-using-minio-client-mc) for more information on using the `mc` commandline tool. For application developers,
-see https://docs.min.io/docs/ and click **MINIO SDKS** in the navigation to view MinIO SDKs for supported languages.
 
 ## Binary Download
 
@@ -144,44 +94,6 @@ require distributed deploying MinIO with Erasure Coding. For extended developmen
 with a *minimum* of 4 drives per MinIO server. See [MinIO Erasure Code Quickstart Guide](https://docs.min.io/docs/minio-erasure-code-quickstart-guide.html)
 for more complete documentation.
 
-# Microsoft Windows
-
-To run MinIO on 64-bit Windows hosts, download the MinIO executable from the following URL:
-
-```sh
-https://dl.min.io/server/minio/release/windows-amd64/minio.exe
-```
-
-Use the following command to run a standalone MinIO server on the Windows host. Replace ``D:\`` with the path to the drive or directory in which you want MinIO to store data. You must change the terminal or powershell directory to the location of the ``minio.exe`` executable, *or* add the path to that directory to the system ``$PATH``:
-
-```sh
-minio.exe server D:\
-```
-
-The MinIO deployment starts using default root credentials `minioadmin:minioadmin`. You can test the deployment using the MinIO Browser, an embedded
-web-based object browser built into MinIO Server. Point a web browser running on the host machine to http://127.0.0.1:9000 and log in with the
-root credentials. You can use the Browser to create buckets, upload objects, and browse the contents of the MinIO server.
-
-You can also connect using any S3-compatible tool, such as the MinIO Client `mc` commandline tool. See
-[Test using MinIO Client `mc`](#test-using-minio-client-mc) for more information on using the `mc` commandline tool. For application developers,
-see https://docs.min.io/docs/ and click **MINIO SDKS** in the navigation to view MinIO SDKs for supported languages.
-
-> NOTE: Standalone MinIO servers are best suited for early development and evaluation. Certain features such as versioning, object locking, and bucket replication
-require distributed deploying MinIO with Erasure Coding. For extended development and production, deploy MinIO with Erasure Coding enabled - specifically,
-with a *minimum* of 4 drives per MinIO server. See [MinIO Erasure Code Quickstart Guide](https://docs.min.io/docs/minio-erasure-code-quickstart-guide.html)
-for more complete documentation.
-
-# FreeBSD
-
-MinIO does not provide an official FreeBSD binary. However, FreeBSD maintains an [upstream release](https://www.freshports.org/www/minio) using [pkg](https://github.com/freebsd/pkg):
-
-```sh
-pkg install minio
-sysrc minio_enable=yes
-sysrc minio_disks=/home/user/Photos
-service minio start
-```
-
 # Install from Source
 
 Use the following commands to compile and run a standalone MinIO server from source. Source installation is only intended for developers and advanced users. If you do not have a working Golang environment, please follow [How to install Golang](https://golang.org/doc/install). Minimum version required is [go1.16](https://golang.org/dl/#stable)
@@ -224,26 +136,6 @@ Below command enables all incoming traffic to ports ranging from 9000 to 9010.
 
 ```sh
 ufw allow 9000:9010/tcp
-```
-
-### firewall-cmd
-
-For hosts with firewall-cmd enabled (CentOS), you can use `firewall-cmd` command to allow traffic to specific ports. Use below commands to allow access to port 9000
-
-```sh
-firewall-cmd --get-active-zones
-```
-
-This command gets the active zone(s). Now, apply port rules to the relevant zones returned above. For example if the zone is `public`, use
-
-```sh
-firewall-cmd --zone=public --add-port=9000/tcp --permanent
-```
-
-Note that `permanent` makes sure the rules are persistent across firewall start, restart or reload. Finally reload the firewall for changes to take effect.
-
-```sh
-firewall-cmd --reload
 ```
 
 ### iptables
@@ -297,16 +189,8 @@ mc admin update <minio alias, e.g., myminio>
 - If using Vault as KMS with MinIO, ensure you have followed the Vault upgrade procedure outlined here: https://www.vaultproject.io/docs/upgrading/index.html
 - If using etcd with MinIO for the federation, ensure you have followed the etcd upgrade procedure outlined here: https://github.com/etcd-io/etcd/blob/master/Documentation/upgrades/upgrading-etcd.md
 
-# Explore Further
-- [MinIO Erasure Code QuickStart Guide](https://docs.min.io/docs/minio-erasure-code-quickstart-guide)
-- [Use `mc` with MinIO Server](https://docs.min.io/docs/minio-client-quickstart-guide)
-- [Use `aws-cli` with MinIO Server](https://docs.min.io/docs/aws-cli-with-minio)
-- [Use `s3cmd` with MinIO Server](https://docs.min.io/docs/s3cmd-with-minio)
-- [Use `minio-go` SDK with MinIO Server](https://docs.min.io/docs/golang-client-quickstart-guide)
-- [The MinIO documentation website](https://docs.min.io)
-
 # Contribute to MinIO Project
-Please follow MinIO [Contributor's Guide](https://github.com/minio/minio/blob/master/CONTRIBUTING.md)
+Please follow MinIO [Contributor's Guide](https://github.com/Novapixel1010/Databank/blob/master/CONTRIBUTING.md)
 
 # License
-Use of MinIO is governed by the Apache 2.0 License found at [LICENSE](https://github.com/minio/minio/blob/master/LICENSE).
+Use of Databank is governed by the Apache 2.0 License found at [LICENSE](https://github.com/Novapixel1010/Databank/blob/master/LICENSE).
