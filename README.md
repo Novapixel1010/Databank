@@ -12,26 +12,26 @@ First this mostly is still minio when it was apache 2.0 license. The plan is to 
 
 # Docker Installation
 
-Use the following commands to run a standalone MinIO server on a Docker container.
+Use the following commands to run a standalone Mr. Databank server on a Docker container.
 
-Standalone MinIO servers are best suited for early development and evaluation. Certain features such as versioning, object locking, and bucket replication
-require distributed deploying MinIO with Erasure Coding. For extended development and production, deploy MinIO with Erasure Coding enabled - specifically,
+Standalone Mr. Databank servers are best suited for early development and evaluation. Certain features such as versioning, object locking, and bucket replication
+require distributed deploying Mr. Databank with Erasure Coding. For extended development and production, deploy Mr. Databank with Erasure Coding enabled - specifically,
 with a *minimum* of 4 drives per MinIO server. See [MinIO Erasure Code Quickstart Guide](https://docs.min.io/docs/minio-erasure-code-quickstart-guide.html)
 for more complete documentation.
 
 ## Stable
 
-Run the following command to run the latest stable image of MinIO on a Docker container using an ephemeral data volume:
+Run the following command to run the latest stable image of Mr. Databank on a Docker container using an ephemeral data volume:
 
 ```sh
 docker run -p 9000:9000 minio/minio server /data
 ```
 
-The MinIO deployment starts using default root credentials `minioadmin:minioadmin`. You can test the deployment using the MinIO Browser, an embedded
-web-based object browser built into MinIO Server. Point a web browser running on the host machine to http://127.0.0.1:9000 and log in with the
+The Mr. Databank deployment starts using default root credentials `minioadmin:minioadmin`. You can test the deployment using the Mr. Databank Browser, an embedded
+web-based object browser built into Mr. Databank Server. Point a web browser running on the host machine to http://127.0.0.1:9000 and log in with the
 root credentials. You can use the Browser to create buckets, upload objects, and browse the contents of the MinIO server.
 
-You can also connect using any S3-compatible tool, such as the MinIO Client `mc` commandline tool. See
+You can also connect using any S3-compatible tool, such as the Mr. Databank Client `mc` commandline tool. See
 [Test using MinIO Client `mc`](#test-using-minio-client-mc) for more information on using the `mc` commandline tool. For application developers,
 see https://docs.min.io/docs/ and click **MINIO SDKS** in the navigation to view MinIO SDKs for supported languages.
 
